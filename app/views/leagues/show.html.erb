@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @league.title %> current standings</h1>
+
+<table>
+	<tr>
+		<td>Name</td><td>Average</td><td>Points</td><td>1st</td><td>2nd</td><td>3rd</td><td>4th</td><td>BP</td><td>Games</td><td>Weeks</td>
+		<% @league.league_nights.each_with_index do |league_night, week| %>
+			<td><%= link_to "W#{week + 1}", league_night_path(league_night)%></td>
+		<% end %>
+	</tr>
+</table>
+
+<br/><br/>
+
+<%= link_to 'Edit', edit_league_path(@league) %> |
+<%= link_to 'Back', leagues_path %>

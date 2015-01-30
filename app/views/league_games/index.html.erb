@@ -1,0 +1,29 @@
+<h1>Listing league_games</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Game</th>
+      <th>League Night</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @league_games.each do |league_game| %>
+      <tr>
+        <td><%= league_game.game.title %></td>
+        <td><%= league_game.league_night.dropdown_title %></td>
+        <td><%= link_to 'Show', league_game %></td>
+        <td><%= link_to 'Edit', edit_league_game_path(league_game) %></td>
+        <td><%= link_to 'Destroy', league_game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New League game', new_league_game_path %>

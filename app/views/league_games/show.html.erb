@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<h2><%= @league_game.game.title %></h2>
+
+<table>
+<% @league_game.scores.each do |score| %>
+<tr><td><%= score.player.name %></td><td><%= score.score %></td></tr>
+<% end %>
+</table>
+
+<%= link_to 'Edit', edit_league_game_path(@league_game) %> |
+<%= link_to 'Back', league_games_path %>

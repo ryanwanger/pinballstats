@@ -1,0 +1,31 @@
+<h1>Listing league_nights</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>League</th>
+      <th>Location</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @league_nights.each do |league_night| %>
+      <tr>
+        <td><%= league_night.date %></td>
+        <td><%= league_night.league_id %></td>
+        <td><%= league_night.location_id %></td>
+        <td><%= link_to 'Show', league_night %></td>
+        <td><%= link_to 'Edit', edit_league_night_path(league_night) %></td>
+        <td><%= link_to 'Destroy', league_night, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New League night', new_league_night_path %>

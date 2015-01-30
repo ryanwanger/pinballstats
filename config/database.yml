@@ -1,0 +1,16 @@
+common: &common
+  adapter: postgresql
+  encoding: utf8
+  host: 127.0.0.1
+
+development:
+  <<: *common
+  database: pinball_league_dev
+
+test:
+  <<: *common
+  database: pinball_league_test
+
+production:
+  <<: *common
+  database: pinball_league_production

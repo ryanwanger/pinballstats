@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @league_night.date %>
+</p>
+
+<p>
+  <strong>League:</strong>
+  <%= @league_night.league_id %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @league_night.location_id %>
+</p>
+
+<table>
+<tr><td></td><td><%= @league_night.league_games[0].game.title %></td>
+	<td></td><td><%= @league_night.league_games[1].game.title %></td>
+	<td></td><td><%= @league_night.league_games[2].game.title %></td>
+	<td></td><td><%= @league_night.league_games[3].game.title %></td>
+	<td></td><td><%= @league_night.league_games[4].game.title %></td>
+</tr>
+
+<% (0...@player_scores[0].length).each do |row| %>
+
+	<tr>
+		<% (0...@player_scores.length).each do |column| %>
+			<td><%= @player_scores[column][row].player.name %></td><td><%= number_with_delimiter(@player_scores[column][row].score, :delimiter => ',') %></td>
+		<% end %>
+	</tr>
+<% end %>
+</table>
+
+
+<% @league_night.groups.each do |group| %>
+	<h4>Group <%= group.group_rank %></h4>
+	<table>
+		<% group.players.each do |player| %>
+			<tr><td><%= player.name %></td><td><%= player.points(group) %></td></tr>
+		<% end %>
+	</table>
+<% end %>
+
+<%= link_to 'Edit', edit_league_night_path(@league_night) %> |
+<%= link_to 'Back', league_nights_path %>

@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>League night:</strong>
+  <%= @group.league_night_id %>
+</p>
+
+<p>
+  <strong>Group rank:</strong>
+  <%= @group.group_rank %>
+</p>
+
+<table>
+	<% @group.players.each do |player| %>
+		<tr><td><%= player.name %></td><td><%= player.points(@group) %></td></tr>
+	<% end %>
+</table>
+
+<% @group.league_games.each do |lg| %>
+	<h2><%= lg.game.title %></h2>
+	<table>
+		<% lg.scores(@group).each do |score| %>
+			<tr>
+				<td><%= score.player.name %></td>
+				<td><%= number_with_delimiter(score.score, :delimiter => ',') %></td>
+				<td><%= score.points_awarded %></td>
+			</tr>
+		<% end %>
+	</table>
+<% end %>
+
+<%= link_to 'Edit', edit_group_path(@group) %> |
+<%= link_to 'Back', groups_path %> |
+<%= link_to 'Add player to group', new_group_player_path(group_id: @group.id) %>
