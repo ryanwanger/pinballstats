@@ -17,11 +17,11 @@
   </div>
   <div class="field">
     <%= f.label :league_id %><br>
-    <%= f.number_field :league_id %>
+    <%= collection_select(:league_night, :league_id, League.all, :id, :title) %>
   </div>
   <div class="field">
     <%= f.label :location_id %><br>
-    <%= f.number_field :location_id %>
+    <%= collection_select(:league_night, :location_id, Location.all, :id, :name) %>
   </div>
   <div class="actions">
     <%= f.submit %>

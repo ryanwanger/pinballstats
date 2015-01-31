@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :league_night_id %><br>
-    <%= collection_select(:league_game, :league_night_id, LeagueNight.all.order("date desc"), :id, :dropdown_title) %>
+    <%= collection_select(:league_game, :league_night_id, LeagueNight.all.order("date desc"), :id, :dropdown_title) %> or <%= link_to "Add new game", new_game_path %>
   </div>
 
   <div class="actions">

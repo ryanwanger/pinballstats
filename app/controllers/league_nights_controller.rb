@@ -1,5 +1,5 @@
 class LeagueNightsController < ApplicationController
-  before_action :set_league_night, only: [:show, :edit, :update, :destroy]
+  before_action :set_league_night, only: [:show, :edit, :update, :destroy, :create_groups]
 
   # GET /league_nights
   # GET /league_nights.json
@@ -20,7 +20,7 @@ class LeagueNightsController < ApplicationController
 
   # GET /league_nights/new
   def new
-    @league_night = LeagueNight.new
+    @league_night = LeagueNight.new(league_id: params[:league_id])
   end
 
   # GET /league_nights/1/edit
@@ -41,6 +41,35 @@ class LeagueNightsController < ApplicationController
         format.json { render json: @league_night.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def create_groups
+    player_ids = params[:player].reject {|k,v| v == "0"}.keys
+
+    groups_of_three = 0
+    case player_ids.length % 4
+    when 1
+      groups_of_three = 3
+    when 2
+      groups_of_three = 2
+    when 3
+      groups_of_three = 1
+    end
+
+    groups_of_four = (player_ids.length - (groups_of_three * 3)) / 4
+
+    groupings = []
+    groups_of_four.times { groupings << player_ids.slice!(0..3)}
+    groups_of_three.times { groupings << player_ids.slice!(0..2)}
+
+    groupings.each_with_index do |grouping, group_rank|
+      g = Group.create(league_night_id: @league_night.id, group_rank: group_rank + 1)
+      grouping.each do |player_id|
+        GroupPlayer.create(group_id: g.id, player_id: player_id.to_i)
+      end
+    end
+
+    redirect_to league_night_path(@league_night)
   end
 
   # PATCH/PUT /league_nights/1

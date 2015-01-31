@@ -13,7 +13,11 @@ PinballLeague::Application.routes.draw do
 
   resources :groups
 
-  resources :league_nights
+  resources :league_nights do
+    member do
+      post 'create_groups'
+    end
+  end
 
   resources :locations
 

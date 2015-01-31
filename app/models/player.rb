@@ -26,15 +26,15 @@ class Player < ActiveRecord::Base
 	# by week or league
 	def points(span = nil)
 		return 0 if scores(span) == 0
-		scores(span).sum(&:points_awarded) + bonus_points(span)
+		scores(span).sum(&:points_awarded) + bonus_points(span).to_i
 	end
 
 	def bonus_points(span = nil)
 		case span.class.name
 		when "LeagueNight"
-			span.bonus_points.count {|bp| bp.player == self}
+			span.bonus_points.count {|bp| bp.try(:player) == self}
 		when "League"
-			span.bonus_points.count {|bp| bp.player == self}
+			span.bonus_points.count {|bp| bp.try(:player) == self}
 		else
 
 		end
@@ -46,5 +46,14 @@ class Player < ActiveRecord::Base
 
 	def games_played(league)
 		Score.where(player_id: self, league_game_id: LeagueGame.where(league_night_id: league.league_nights)).count
+	end
+
+	def group(league_night)
+		gp = GroupPlayer.where(player_id: self, group_id: league_night.groups.collect(&:id))
+		if gp.first
+			gp.first.group
+		else
+			nil
+		end
 	end
 end
