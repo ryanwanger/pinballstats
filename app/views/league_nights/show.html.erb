@@ -39,12 +39,14 @@
 
 
 <% @league_night.groups.each do |group| %>
-	<h4>Group <%= group.group_rank %></h4>
+<br/>
 	<table>
+		<tr><td>Group <%= group.group_rank %></td><td>Points</td><td>1st</td><td>2nd</td><td>3rd</td><td>4th</td><td>BP</td></tr>
 		<% group.players.each do |player| %>
-			<tr><td><%= player.name %></td><td><%= player.points(group) %></td></tr>
+			<tr><td><%= player.name %></td><td><%= player.points(@league_night) %></td><td><%= player.score_distribution(@league_night)[4] %></td><td><%= player.score_distribution(@league_night)[3] %></td><td><%= player.score_distribution(@league_night)[2] %></td><td><%= player.score_distribution(@league_night)[1] %></td><td><%= player.bonus_points(@league_night) %></td></tr>
 		<% end %>
 	</table>
+	<br/>
 <% end %>
 
 <br/><br/>

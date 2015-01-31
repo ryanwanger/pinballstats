@@ -35,8 +35,6 @@ class Player < ActiveRecord::Base
 			span.bonus_points.count {|bp| bp.try(:player) == self}
 		when "League"
 			span.bonus_points.count {|bp| bp.try(:player) == self}
-		else
-
 		end
 	end
 
