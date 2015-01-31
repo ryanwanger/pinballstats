@@ -10,4 +10,12 @@ class LeagueNight < ActiveRecord::Base
 	def player_count
 		GroupPlayer.where(group_id: self.groups.collect(&:id)).count
 	end
+
+	def bonus_points
+		bonus_points = []
+		league_games.each do |league_game|
+			bonus_points << league_game.scores.first
+		end
+		bonus_points
+	end
 end

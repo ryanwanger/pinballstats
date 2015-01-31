@@ -8,7 +8,7 @@ class Score < ActiveRecord::Base
 		players_in_group = group_scores.count
 		points = group_scores.index(self.score) + 1
 		points += 1 if players_in_group == 3 && self.score > group.group_median(league_game)
-		points += 1 if bonus_point?
+		# points += 1 if bonus_point?
 		
 		return points
 	end
