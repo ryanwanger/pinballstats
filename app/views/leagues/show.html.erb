@@ -38,9 +38,11 @@
 			</tr>
 		<% end %>
 	</table>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+	<% if @admin %>
+	  <div class="actions">
+	    <%= f.submit "Generate groups" %>
+  	  </div>
+  	<% end %>
 
 <% end %>
 
