@@ -1,5 +1,6 @@
 class LeagueNight < ActiveRecord::Base
 	belongs_to :league
+	belongs_to :location
 	has_many :league_games
 	has_many :groups
 

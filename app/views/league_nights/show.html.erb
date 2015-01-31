@@ -7,28 +7,28 @@
 
 <p>
   <strong>League:</strong>
-  <%= @league_night.league_id %>
+  <%= link_to @league_night.league.title, league_path(@league_night.league) %>
 </p>
 
 <p>
   <strong>Location:</strong>
-  <%= @league_night.location_id %>
+  <%= @league_night.location.name %>
 </p>
 
 <% if @league_night.league_games.any? %>
 	<table>
-	<tr><td></td><td><%= @league_night.league_games[0].game.title %></td>
-		<td></td><td><%= @league_night.league_games[1].game.title %></td>
-		<td></td><td><%= @league_night.league_games[2].game.title %></td>
-		<td></td><td><%= @league_night.league_games[3].game.title %></td>
-		<td></td><td><%= @league_night.league_games[4].game.title %></td>
+	<tr><td></td><td><%= @league_night.league_games[0].game.title %></td><td></td>
+		<td></td><td><%= @league_night.league_games[1].game.title %></td><td></td>
+		<td></td><td><%= @league_night.league_games[2].game.title %></td><td></td>
+		<td></td><td><%= @league_night.league_games[3].game.title %></td><td></td>
+		<td></td><td><%= @league_night.league_games[4].game.title %></td><td></td>
 	</tr>
 
 	<% (0...@player_scores[0].length).each do |row| %>
 
 		<tr>
 			<% (0...@player_scores.length).each do |column| %>
-				<td><%= @player_scores[column][row].player.name %></td><td><%= number_with_delimiter(@player_scores[column][row].score, :delimiter => ',') %></td>
+				<td><%= @player_scores[column][row].player.name %></td><td><%= number_with_delimiter(@player_scores[column][row].score, :delimiter => ',') %></td><td></td>
 			<% end %>
 		</tr>
 	<% end %>
