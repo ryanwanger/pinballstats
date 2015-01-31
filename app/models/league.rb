@@ -3,7 +3,7 @@ class League < ActiveRecord::Base
 
 	def players
 		players = Player.where(id: GroupPlayer.where(group_id: Group.where(league_night_id: league_nights)).collect(&:player_id))
-		players.sort_by {|p| p.average_score(self)}.reverse
+		players.sort_by {|p| [p.average_score(self), p.score_distribution(self)[4]]}.reverse
 	end
 
 	def bonus_points
