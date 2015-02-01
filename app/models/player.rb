@@ -19,14 +19,14 @@ class Player < ActiveRecord::Base
 	def score_distribution(span = nil)
 		scores(span)
 		h = Hash.new(0)
-		scores(span).each { |s| h[s.points_awarded] += 1 }
+		scores(span).each { |s| h[s.points] += 1 }
 		h
 	end
 
 	# by week or league
 	def points(span = nil)
 		return 0 if scores(span) == 0
-		scores(span).sum(&:points_awarded) + bonus_points(span).to_i
+		scores(span).sum(&:points) + bonus_points(span).to_i
 	end
 
 	def bonus_points(span = nil)

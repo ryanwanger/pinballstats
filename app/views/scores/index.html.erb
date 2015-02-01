@@ -17,9 +17,9 @@
     <% @scores.each do |score| %>
       <tr>
         <td><%= score.score %></td>
-        <td><%= score.player_id %></td>
-        <td><%= score.game_id %></td>
-        <td><%= score.group_id %></td>
+        <td><%= score.player.name %></td>
+        <td><%= score.league_game.game.title %></td>
+        <td><%= score.group.group_rank %></td>
         <td><%= link_to 'Show', score %></td>
         <td><%= link_to 'Edit', edit_score_path(score) %></td>
         <td><%= link_to 'Destroy', score, method: :delete, data: { confirm: 'Are you sure?' } %></td>

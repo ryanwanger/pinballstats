@@ -50,5 +50,56 @@
 <% end %>
 
 <br/><br/>
+
+
+
+<h3><%= @league_night.league_games[0].game.title %></h3>
+<canvas id="game0" width="800" height="400"></canvas>
+<script>
+
+	var data = {
+	    labels: <%= @league_night.league_games[0].scores.includes(:player).collect{|s| s.player.name}.to_json.html_safe %>,
+	    datasets: [
+	        {
+	            label: "My First dataset",
+	            fillColor: "rgba(220,220,220,0.5)",
+	            strokeColor: "rgba(220,220,220,0.8)",
+	            highlightFill: "rgba(220,220,220,0.75)",
+	            highlightStroke: "rgba(220,220,220,1)",
+	            data: <%= @league_night.league_games[0].scores.collect(&:score) %>
+	        }
+	    ]
+	};
+
+	var ctx = document.getElementById("game0").getContext("2d");
+	new Chart(ctx).Bar(data, {barShowLabels: false});
+
+</script>
+
+<h3><%= @league_night.league_games[1].game.title %></h3>
+<canvas id="game1" width="800" height="400"></canvas>
+
+<script>
+
+	var data = {
+	    labels: <%= @league_night.league_games[1].scores.includes(:player).collect{|s| s.player.name}.to_json.html_safe %>,
+	    datasets: [
+	        {
+	            label: "My First dataset",
+	            fillColor: "rgba(220,220,220,0.5)",
+	            strokeColor: "rgba(220,220,220,0.8)",
+	            highlightFill: "rgba(220,220,220,0.75)",
+	            highlightStroke: "rgba(220,220,220,1)",
+	            data: <%= @league_night.league_games[1].scores.collect(&:score) %>
+	        }
+	    ]
+	};
+
+	var ctx = document.getElementById("game1").getContext("2d");
+	new Chart(ctx).Bar(data, {});
+
+</script>
+
+
 <%= link_to 'Edit', edit_league_night_path(@league_night) %> |
 <%= link_to 'Back', league_nights_path %>
