@@ -30,16 +30,11 @@ class Player < ActiveRecord::Base
 	end
 
 	def bonus_points(span = nil)
-		case span.class.name
-		when "LeagueNight"
-			span.bonus_points.count {|bp| bp.try(:player) == self}
-		when "League"
-			span.bonus_points.count {|bp| bp.try(:player) == self}
-		end
+		span.bonus_points.count {|bp| bp.try(:player_id) == self.id}
 	end
 
 	def average_score(league)
-		(points(league) / games_played(league).to_f).round(2)	
+		sprintf "%.2f", (points(league) / scores(league).count.to_f)
 	end
 
 	def games_played(league)
