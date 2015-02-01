@@ -1,5 +1,5 @@
 class League < ActiveRecord::Base
-	has_many :league_nights
+	has_many :league_nights, order: "week_number asc"
 
 	def players
 		players = Player.where(id: GroupPlayer.where(group_id: Group.where(league_night_id: league_nights)).collect(&:player_id))

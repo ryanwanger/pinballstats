@@ -4,6 +4,8 @@ class LeagueNight < ActiveRecord::Base
 	has_many :league_games
 	has_many :groups
 
+	after_create :set_week_number
+
 	def dropdown_title
 		self.league.title + " " + self.date.to_s
 	end
@@ -18,5 +20,9 @@ class LeagueNight < ActiveRecord::Base
 			bonus_points << league_game.scores.first
 		end
 		bonus_points
+	end
+
+	def set_week_number
+		self.update_column(:week_number, self.league.league_nights.count)
 	end
 end

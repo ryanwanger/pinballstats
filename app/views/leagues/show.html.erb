@@ -7,9 +7,9 @@
 	<table class="league-table">
 
 		<tr>
-			<td>Name</td><td>Average</td><td>Points</td><td>1st</td><td>2nd</td><td>3rd</td><td>4th</td><td>BP</td><td>Games</td><td>Weeks</td>
-			<% @league.league_nights.each_with_index do |league_night, week| %>
-				<td><%= link_to "W#{week + 1}", league_night_path(league_night)%></td>
+			<th>Name</th><th>Average</th><th>Points</th><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th><th>BP</th><th>Games</th><th>Weeks</th>
+			<% @league.league_nights.each do |league_night| %>
+				<th><%= link_to "W#{league_night.week_number}", league_night_path(league_night)%></th>
 			<% end %>
 			<% if @admin %>
 				<td><%= link_to "Create", new_league_night_path(league_id: @league) %></td>

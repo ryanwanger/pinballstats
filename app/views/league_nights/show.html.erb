@@ -2,6 +2,16 @@
 <h1><%= link_to @league_night.league.title, league_path(@league_night.league) %></h1>
 <h2><%= @league_night.date.strftime("%B %-d, %Y") %> - <%= @league_night.location.name %></h2>
 
+<% @league_night.league.league_nights.each do |league_night| %>
+	<% if league_night == @league_night %>
+		<strong>Week <%= league_night.week_number %></strong> |
+	<% else %>
+		<%= link_to "Week #{league_night.week_number}", league_night_path(league_night)%> |
+	<% end %>
+<% end %>
+<hr/>
+
+
 <div class="league-nights game-score-table-container">
 	<% @league_night.league_games.each do |league_game| %>
 		<table class="game-score-table"><th colspan="2"><%= league_game.game.title %></th>
