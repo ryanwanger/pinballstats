@@ -16,7 +16,7 @@
 			<% end %>
 		</tr>
 		<% @league.players.each do |player| %>
-			<tr><td><%= player.name %></td><td><%= player.average_score(@league) %></td><td><%= player.points(@league) %></td>
+			<tr><td><%= player.nickname %></td><td><%= player.average_score(@league) %></td><td><%= player.points(@league) %></td>
 
 				<td><%= player.score_distribution(@league)[4] %></td><td><%= player.score_distribution(@league)[3] %></td><td><%= player.score_distribution(@league)[2] %></td><td><%= player.score_distribution(@league)[1] %></td><td><%= player.bonus_points(@league) %></td>
 				<td><%= player.games_played(@league) %></td><td><%= player.games_played(@league) / 5 %></td>

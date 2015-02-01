@@ -17,7 +17,7 @@
     <% @scores.each do |score| %>
       <tr>
         <td><%= score.score %></td>
-        <td><%= score.player.name %></td>
+        <td><%= score.player.nickname %></td>
         <td><%= score.league_game.game.title %></td>
         <td><%= score.group.group_rank %></td>
         <td><%= link_to 'Show', score %></td>

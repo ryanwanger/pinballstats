@@ -12,7 +12,7 @@
 
 <table>
 	<% @group.players.each do |player| %>
-		<tr><td><%= player.name %></td><td><%= player.points(@group) %></td></tr>
+		<tr><td><%= player.nickname %></td><td><%= player.points(@group) %></td></tr>
 	<% end %>
 </table>
 
@@ -21,7 +21,7 @@
 	<table>
 		<% lg.scores(@group).each do |score| %>
 			<tr>
-				<td><%= score.player.name %></td>
+				<td><%= score.player.nickname %></td>
 				<td><%= number_with_delimiter(score.score, :delimiter => ',') %></td>
 				<td><%= score.points %></td>
 			</tr>

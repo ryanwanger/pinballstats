@@ -28,7 +28,7 @@
 
 		<tr>
 			<% (0...@player_scores.length).each do |column| %>
-				<td class="player player_<%= @player_scores[column][row].player_id %>"><%= @player_scores[column][row].player.name %></td><td class="player player_<%= @player_scores[column][row].player_id %>"><%= number_with_delimiter(@player_scores[column][row].score, :delimiter => ',') %></td><td></td>
+				<td class="player player_<%= @player_scores[column][row].player_id %>"><%= @player_scores[column][row].player.nickname %></td><td class="player player_<%= @player_scores[column][row].player_id %>"><%= number_with_delimiter(@player_scores[column][row].score, :delimiter => ',') %></td><td></td>
 			<% end %>
 		</tr>
 	<% end %>
@@ -43,7 +43,7 @@
 	<table>
 		<tr><td>Group <%= group.group_rank %></td><td>Points</td><td>1st</td><td>2nd</td><td>3rd</td><td>4th</td><td>BP</td></tr>
 		<% group.players.sort_by {|p| p.points(@league_night)}.reverse.each do |player| %>
-			<tr><td><%= player.name %></td><td><%= player.points(@league_night) %></td><td><%= player.score_distribution(@league_night)[4] %></td><td><%= player.score_distribution(@league_night)[3] %></td><td><%= player.score_distribution(@league_night)[2] %></td><td><%= player.score_distribution(@league_night)[1] %></td><td><%= player.bonus_points(@league_night) %></td></tr>
+			<tr><td><%= player.nickname %></td><td><%= player.points(@league_night) %></td><td><%= player.score_distribution(@league_night)[4] %></td><td><%= player.score_distribution(@league_night)[3] %></td><td><%= player.score_distribution(@league_night)[2] %></td><td><%= player.score_distribution(@league_night)[1] %></td><td><%= player.bonus_points(@league_night) %></td></tr>
 		<% end %>
 	</table>
 	<br/>
@@ -66,7 +66,7 @@ $(".player").mouseout(function() {
 <script>
 
 	var data = {
-	    labels: <%= @league_night.league_games[0].scores.includes(:player).collect{|s| s.player.name}.to_json.html_safe %>,
+	    labels: <%= @league_night.league_games[0].scores.includes(:player).collect{|s| s.player.nickname}.to_json.html_safe %>,
 	    datasets: [
 	        {
 	            label: "My First dataset",
@@ -90,7 +90,7 @@ $(".player").mouseout(function() {
 <script>
 
 	var data = {
-	    labels: <%= @league_night.league_games[1].scores.includes(:player).collect{|s| s.player.name}.to_json.html_safe %>,
+	    labels: <%= @league_night.league_games[1].scores.includes(:player).collect{|s| s.player.nickname}.to_json.html_safe %>,
 	    datasets: [
 	        {
 	            label: "My First dataset",
@@ -117,7 +117,7 @@ $(".player").mouseout(function() {
 <script>
 
 	var data = {
-	    labels: <%= @league_night.league_games[2].scores.includes(:player).collect{|s| s.player.name}.to_json.html_safe %>,
+	    labels: <%= @league_night.league_games[2].scores.includes(:player).collect{|s| s.player.nickname}.to_json.html_safe %>,
 	    datasets: [
 	        {
 	            label: "My First dataset",
@@ -141,7 +141,7 @@ $(".player").mouseout(function() {
 <script>
 
 	var data = {
-	    labels: <%= @league_night.league_games[3].scores.includes(:player).collect{|s| s.player.name}.to_json.html_safe %>,
+	    labels: <%= @league_night.league_games[3].scores.includes(:player).collect{|s| s.player.nickname}.to_json.html_safe %>,
 	    datasets: [
 	        {
 	            label: "My First dataset",
@@ -165,7 +165,7 @@ $(".player").mouseout(function() {
 <script>
 
 	var data = {
-	    labels: <%= @league_night.league_games[4].scores.includes(:player).collect{|s| s.player.name}.to_json.html_safe %>,
+	    labels: <%= @league_night.league_games[4].scores.includes(:player).collect{|s| s.player.nickname}.to_json.html_safe %>,
 	    datasets: [
 	        {
 	            label: "My First dataset",

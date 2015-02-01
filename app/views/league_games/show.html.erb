@@ -4,7 +4,7 @@
 
 <table>
 <% @league_game.scores.each do |score| %>
-<tr><td><%= score.player.name %></td><td><%= score.score %></td></tr>
+<tr><td><%= score.player.nickname %></td><td><%= score.score %></td></tr>
 <% end %>
 </table>
 

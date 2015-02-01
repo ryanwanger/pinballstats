@@ -15,7 +15,7 @@
     <% @group_players.each do |group_player| %>
       <tr>
         <td><%= group_player.group.dropdown_title %></td>
-        <td><%= group_player.player.name %></td>
+        <td><%= group_player.player.nickname %></td>
         <td><%= link_to 'Show', group_player %></td>
         <td><%= link_to 'Edit', edit_group_player_path(group_player) %></td>
         <td><%= link_to 'Destroy', group_player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
