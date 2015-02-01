@@ -28,7 +28,7 @@
 
 		<tr>
 			<% (0...@player_scores.length).each do |column| %>
-				<td><%= @player_scores[column][row].player.name %></td><td><%= number_with_delimiter(@player_scores[column][row].score, :delimiter => ',') %></td><td></td>
+				<td class="player player_<%= @player_scores[column][row].player_id %>"><%= @player_scores[column][row].player.name %></td><td class="player player_<%= @player_scores[column][row].player_id %>"><%= number_with_delimiter(@player_scores[column][row].score, :delimiter => ',') %></td><td></td>
 			<% end %>
 		</tr>
 	<% end %>
@@ -51,7 +51,15 @@
 
 <br/><br/>
 
+<script>
+$(".player").mouseover(function() {
+	$("." + this.classList[1]).addClass('selected');
+});
 
+$(".player").mouseout(function() {
+	$("." + this.classList[1]).removeClass('selected');
+});
+</script>
 
 <h3><%= @league_night.league_games[0].game.title %></h3>
 <canvas id="game0" width="800" height="400"></canvas>
