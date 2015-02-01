@@ -72,7 +72,7 @@
 	};
 
 	var ctx = document.getElementById("game0").getContext("2d");
-	new Chart(ctx).Bar(data, {barShowLabels: false});
+	new Chart(ctx).Bar(data, {});
 
 </script>
 
@@ -101,5 +101,80 @@
 </script>
 
 
+
+
+<h3><%= @league_night.league_games[2].game.title %></h3>
+<canvas id="game2" width="800" height="400"></canvas>
+
+<script>
+
+	var data = {
+	    labels: <%= @league_night.league_games[2].scores.includes(:player).collect{|s| s.player.name}.to_json.html_safe %>,
+	    datasets: [
+	        {
+	            label: "My First dataset",
+	            fillColor: "rgba(220,220,220,0.5)",
+	            strokeColor: "rgba(220,220,220,0.8)",
+	            highlightFill: "rgba(220,220,220,0.75)",
+	            highlightStroke: "rgba(220,220,220,1)",
+	            data: <%= @league_night.league_games[2].scores.collect(&:score) %>
+	        }
+	    ]
+	};
+
+	var ctx = document.getElementById("game2").getContext("2d");
+	new Chart(ctx).Bar(data, {});
+
+</script>
+
+<h3><%= @league_night.league_games[3].game.title %></h3>
+<canvas id="game3" width="800" height="400"></canvas>
+
+<script>
+
+	var data = {
+	    labels: <%= @league_night.league_games[3].scores.includes(:player).collect{|s| s.player.name}.to_json.html_safe %>,
+	    datasets: [
+	        {
+	            label: "My First dataset",
+	            fillColor: "rgba(220,220,220,0.5)",
+	            strokeColor: "rgba(220,220,220,0.8)",
+	            highlightFill: "rgba(220,220,220,0.75)",
+	            highlightStroke: "rgba(220,220,220,1)",
+	            data: <%= @league_night.league_games[3].scores.collect(&:score) %>
+	        }
+	    ]
+	};
+
+	var ctx = document.getElementById("game3").getContext("2d");
+	new Chart(ctx).Bar(data, {});
+
+</script>
+
+<h3><%= @league_night.league_games[4].game.title %></h3>
+<canvas id="game4" width="800" height="400"></canvas>
+
+<script>
+
+	var data = {
+	    labels: <%= @league_night.league_games[4].scores.includes(:player).collect{|s| s.player.name}.to_json.html_safe %>,
+	    datasets: [
+	        {
+	            label: "My First dataset",
+	            fillColor: "rgba(220,220,220,0.5)",
+	            strokeColor: "rgba(220,220,220,0.8)",
+	            highlightFill: "rgba(220,220,220,0.75)",
+	            highlightStroke: "rgba(220,220,220,1)",
+	            data: <%= @league_night.league_games[4].scores.collect(&:score) %>
+	        }
+	    ]
+	};
+
+	var ctx = document.getElementById("game4").getContext("2d");
+	new Chart(ctx).Bar(data, {showBarLabels:false});
+
+</script>
+
+<br/><br/>
 <%= link_to 'Edit', edit_league_night_path(@league_night) %> |
 <%= link_to 'Back', league_nights_path %>
