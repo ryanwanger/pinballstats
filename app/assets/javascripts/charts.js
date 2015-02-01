@@ -68,6 +68,7 @@
 			// Boolean - If we want to override with a hard coded scale
 			scaleOverride: false,
 
+			barShowLabels: true,
 			// ** Required if scaleOverride is true **
 			// Number - The number of steps in a hard coded scale
 			scaleSteps: null,
@@ -1568,7 +1569,9 @@
 
 				}
 				if (this.xLabelRotation > 0){
-					this.endPoint -= Math.sin(toRadians(this.xLabelRotation))*originalLabelWidth + 3;
+					if (this.ctx.barShowLabels) {
+						this.endPoint -= Math.sin(toRadians(this.xLabelRotation))*originalLabelWidth + 3;						
+					}
 				}
 			}
 			else{
@@ -1641,6 +1644,10 @@
 						ctx.lineWidth = this.lineWidth;
 						ctx.strokeStyle = this.lineColor;
 					}
+
+					if (ctx.barShowLabels) {    
+                    	ctx.fillText(label, 0, 0);
+                	}
 
 					linePositionY += helpers.aliasPixel(ctx.lineWidth);
 
