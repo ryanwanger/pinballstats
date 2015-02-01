@@ -5,8 +5,6 @@ class Score < ActiveRecord::Base
 
 	after_save :calculate_points
 
-	private
-
 	def points_awarded
 		group_scores = Score.where(league_game: league_game, group: group).order("score asc").collect(&:score)
 		players_in_group = group_scores.count
@@ -15,6 +13,8 @@ class Score < ActiveRecord::Base
 		
 		return points
 	end
+
+	private
 
 	def calculate_points
 		self.league_game.scores.where(group: self.group).each do |score|
