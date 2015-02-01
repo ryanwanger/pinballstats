@@ -1,53 +1,33 @@
 <p id="notice"><%= notice %></p>
+<h1><%= link_to @league_night.league.title, league_path(@league_night.league) %></h1>
+<h2><%= @league_night.date.strftime("%B %-d, %Y") %> - <%= @league_night.location.name %></h2>
 
-<p>
-  <strong>Date:</strong>
-  <%= @league_night.date %>
-</p>
-
-<p>
-  <strong>League:</strong>
-  <%= link_to @league_night.league.title, league_path(@league_night.league) %>
-</p>
-
-<p>
-  <strong>Location:</strong>
-  <%= @league_night.location.name %>
-</p>
-
-<% if @league_night.league_games.any? %>
-	<table>
-	<tr><td></td><td><%= @league_night.league_games[0].game.title %></td><td></td>
-		<td></td><td><%= @league_night.league_games[1].game.title %></td><td></td>
-		<td></td><td><%= @league_night.league_games[2].game.title %></td><td></td>
-		<td></td><td><%= @league_night.league_games[3].game.title %></td><td></td>
-		<td></td><td><%= @league_night.league_games[4].game.title %></td><td></td>
-	</tr>
-
-	<% (0...@player_scores[0].length).each do |row| %>
-
-		<tr>
-			<% (0...@player_scores.length).each do |column| %>
-				<td class="player player_<%= @player_scores[column][row].player_id %>"><%= @player_scores[column][row].player.nickname %></td><td class="player player_<%= @player_scores[column][row].player_id %>"><%= number_with_delimiter(@player_scores[column][row].score, :delimiter => ',') %></td><td></td>
-			<% end %>
-		</tr>
+<div class="league-nights game-score-table-container">
+	<% @league_night.league_games.each do |league_game| %>
+		<table class="game-score-table"><th colspan="2"><%= league_game.game.title %></th>
+		<% league_game.scores.includes(:player).each do |score| %>
+			<tr>
+				<td class="player player_<%= score.player_id %> score-<%= score.points %>"><%= score.player.nickname %></td><td class="player player_<%= score.player_id %> text-right score-<%= score.points %>"><%= number_with_delimiter(score.score, :delimiter => ',') %></td>
+			</tr>
+		<% end %>
+		</table>
 	<% end %>
-	</table>
-<% else %>
+</div>
+
+<% if @league_night.league_games.count == 0 %>
 	<%= link_to "Add games", new_league_game_path(league_id: @league) %>
 <% end %>
 
-
+<div class="group-table-container">
 <% @league_night.groups.each do |group| %>
-<br/>
-	<table>
-		<tr><td>Group <%= group.group_rank %></td><td>Points</td><td>1st</td><td>2nd</td><td>3rd</td><td>4th</td><td>BP</td></tr>
+	<table class="group-table">
+		<th>Group <%= group.group_rank %></th><th>Points</th><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th><th>BP</th>
 		<% group.players.sort_by {|p| p.points(@league_night)}.reverse.each do |player| %>
 			<tr><td><%= player.nickname %></td><td><%= player.points(@league_night) %></td><td><%= player.score_distribution(@league_night)[4] %></td><td><%= player.score_distribution(@league_night)[3] %></td><td><%= player.score_distribution(@league_night)[2] %></td><td><%= player.score_distribution(@league_night)[1] %></td><td><%= player.bonus_points(@league_night) %></td></tr>
 		<% end %>
 	</table>
-	<br/>
 <% end %>
+</div>
 
 <br/><br/>
 
@@ -61,6 +41,7 @@ $(".player").mouseout(function() {
 });
 </script>
 
+<div class="graph-container">
 <h3><%= @league_night.league_games[0].game.title %></h3>
 <canvas id="game0" width="800" height="400"></canvas>
 <script>
@@ -70,10 +51,10 @@ $(".player").mouseout(function() {
 	    datasets: [
 	        {
 	            label: "My First dataset",
-	            fillColor: "rgba(220,220,220,0.5)",
-	            strokeColor: "rgba(220,220,220,0.8)",
-	            highlightFill: "rgba(220,220,220,0.75)",
-	            highlightStroke: "rgba(220,220,220,1)",
+	            fillColor: "rgba(189,228,168,0.5)",
+	            strokeColor: "rgba(189,228,168,0.8)",
+	            highlightFill: "rgba(123,178,168,0.75)",
+	            highlightStroke: "rgba(123,178,168,1)",
 	            data: <%= @league_night.league_games[0].scores.collect(&:score) %>
 	        }
 	    ]
@@ -83,7 +64,9 @@ $(".player").mouseout(function() {
 	new Chart(ctx).Bar(data, {});
 
 </script>
+</div>
 
+<div class="graph-container left">
 <h3><%= @league_night.league_games[1].game.title %></h3>
 <canvas id="game1" width="800" height="400"></canvas>
 
@@ -94,10 +77,10 @@ $(".player").mouseout(function() {
 	    datasets: [
 	        {
 	            label: "My First dataset",
-	            fillColor: "rgba(220,220,220,0.5)",
-	            strokeColor: "rgba(220,220,220,0.8)",
-	            highlightFill: "rgba(220,220,220,0.75)",
-	            highlightStroke: "rgba(220,220,220,1)",
+	            fillColor: "rgba(189,228,168,0.5)",
+	            strokeColor: "rgba(189,228,168,0.8)",
+	            highlightFill: "rgba(123,178,168,0.75)",
+	            highlightStroke: "rgba(123,178,168,1)",
 	            data: <%= @league_night.league_games[1].scores.collect(&:score) %>
 	        }
 	    ]
@@ -107,10 +90,10 @@ $(".player").mouseout(function() {
 	new Chart(ctx).Bar(data, {});
 
 </script>
+</div>
 
 
-
-
+<div class="graph-container left">
 <h3><%= @league_night.league_games[2].game.title %></h3>
 <canvas id="game2" width="800" height="400"></canvas>
 
@@ -121,10 +104,10 @@ $(".player").mouseout(function() {
 	    datasets: [
 	        {
 	            label: "My First dataset",
-	            fillColor: "rgba(220,220,220,0.5)",
-	            strokeColor: "rgba(220,220,220,0.8)",
-	            highlightFill: "rgba(220,220,220,0.75)",
-	            highlightStroke: "rgba(220,220,220,1)",
+	            fillColor: "rgba(189,228,168,0.5)",
+	            strokeColor: "rgba(189,228,168,0.8)",
+	            highlightFill: "rgba(123,178,168,0.75)",
+	            highlightStroke: "rgba(123,178,168,1)",
 	            data: <%= @league_night.league_games[2].scores.collect(&:score) %>
 	        }
 	    ]
@@ -134,7 +117,9 @@ $(".player").mouseout(function() {
 	new Chart(ctx).Bar(data, {});
 
 </script>
+</div>
 
+<div class="graph-container left">
 <h3><%= @league_night.league_games[3].game.title %></h3>
 <canvas id="game3" width="800" height="400"></canvas>
 
@@ -145,10 +130,10 @@ $(".player").mouseout(function() {
 	    datasets: [
 	        {
 	            label: "My First dataset",
-	            fillColor: "rgba(220,220,220,0.5)",
-	            strokeColor: "rgba(220,220,220,0.8)",
-	            highlightFill: "rgba(220,220,220,0.75)",
-	            highlightStroke: "rgba(220,220,220,1)",
+	            fillColor: "rgba(189,228,168,0.5)",
+	            strokeColor: "rgba(189,228,168,0.8)",
+	            highlightFill: "rgba(123,178,168,0.75)",
+	            highlightStroke: "rgba(123,178,168,1)",
 	            data: <%= @league_night.league_games[3].scores.collect(&:score) %>
 	        }
 	    ]
@@ -158,7 +143,9 @@ $(".player").mouseout(function() {
 	new Chart(ctx).Bar(data, {});
 
 </script>
+</div>
 
+<div class="graph-container left">
 <h3><%= @league_night.league_games[4].game.title %></h3>
 <canvas id="game4" width="800" height="400"></canvas>
 
@@ -169,10 +156,10 @@ $(".player").mouseout(function() {
 	    datasets: [
 	        {
 	            label: "My First dataset",
-	            fillColor: "rgba(220,220,220,0.5)",
-	            strokeColor: "rgba(220,220,220,0.8)",
-	            highlightFill: "rgba(220,220,220,0.75)",
-	            highlightStroke: "rgba(220,220,220,1)",
+	            fillColor: "rgba(189,228,168,0.5)",
+	            strokeColor: "rgba(189,228,168,0.8)",
+	            highlightFill: "rgba(123,178,168,0.75)",
+	            highlightStroke: "rgba(123,178,168,1)",
 	            data: <%= @league_night.league_games[4].scores.collect(&:score) %>
 	        }
 	    ]
@@ -182,7 +169,12 @@ $(".player").mouseout(function() {
 	new Chart(ctx).Bar(data, {showBarLabels:false});
 
 </script>
+</div>
 
 <br/><br/>
+<% if @admin %>
+<div class="left">
 <%= link_to 'Edit', edit_league_night_path(@league_night) %> |
 <%= link_to 'Back', league_nights_path %>
+</div>
+<% end %>

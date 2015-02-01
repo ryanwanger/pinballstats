@@ -12,11 +12,47 @@
  *= require_tree .
  */
 
+ /*
+lightest: #d7f2ba 215,242,186
+light:#bde4a8 189,228,168
+medium: #9cc69b 156,198,155
+dark: #7bb2a8  123,178,168
+darkest: #676f54 103,111,84
+*/
+
+table {
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+
 table, th, td {
-    border: 1px solid black;
     padding: 5px;
 }
 
-.selected {
-	background-color: #DDD;
+table tr:nth-child(even) {
+    background: #d7f2ba;
+}
+
+table tr:nth-child(odd) {
+	background: #bde4a8;
+}
+
+table th {
+	background: white;
+}
+
+.left-border {
+	border-left: 5px solid white;
+}
+
+.left {
+	float: left;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.text-left {
+	text-align: left;
 }

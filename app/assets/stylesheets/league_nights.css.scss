@@ -1,3 +1,63 @@
 // Place all the styles related to the LeagueNights controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.game-score-table {
+	margin-left: 5px;
+	float: left;
+}
+
+.game-score-table-container {
+	width: 100%;
+	margin-bottom: 20px;
+	float: left;
+}
+
+.group-table {
+	display: inline-block;
+	min-height: 150px;
+	float: left;
+}
+
+.group-table-container {
+	max-width: 620px;
+	display: block;
+	float: left;
+}
+
+.graph-container {
+	width: 100%;
+	float: left;
+}
+
+.league-nights {
+
+	table tr td:nth-child(odd) {
+		padding-left: 10px;
+	}
+
+	table tr td:nth-child(even) {
+		padding-right: 10px;
+	}
+
+	.selected {
+		color: white;
+		background-color: #676f54 !important;
+	}
+
+	.score-4 {
+		background-color: #d7f2ba;
+	}
+
+	.score-3 {
+		background-color: #bde4a8;
+	}
+
+	.score-2 {
+		background-color: #9cc69b;
+	}
+
+	.score-1 {
+		background-color: #7bb2a8;
+	}
+}

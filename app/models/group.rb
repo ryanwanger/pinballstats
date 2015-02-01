@@ -25,7 +25,6 @@ class Group < ActiveRecord::Base
 
 	def group_median(league_game)
 		nth_score = (league_night.player_count * group_median_percentage).ceil
-		puts "nth score: " + nth_score.to_s + " for league_game " + league_game.game.title
 		Score.where(league_game: league_game).order("score desc").offset(nth_score).first.score
 	end
 end

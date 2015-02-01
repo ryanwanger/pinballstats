@@ -4,7 +4,7 @@
 
 <%= form_for :league_night, url: create_groups_league_night_path(@league.league_nights.last), method: :post do |f| %>
 
-	<table>
+	<table class="league-table">
 
 		<tr>
 			<td>Name</td><td>Average</td><td>Points</td><td>1st</td><td>2nd</td><td>3rd</td><td>4th</td><td>BP</td><td>Games</td><td>Weeks</td>
@@ -16,7 +16,7 @@
 			<% end %>
 		</tr>
 		<% @league.players.each do |player| %>
-			<tr><td><%= player.nickname %></td><td><%= player.average_score(@league) %></td><td><%= player.points(@league) %></td>
+			<tr><td class="text-left"><%= player.nickname %></td><td><%= player.average_score(@league) %></td><td><%= player.points(@league) %></td>
 
 				<td><%= player.score_distribution(@league)[4] %></td><td><%= player.score_distribution(@league)[3] %></td><td><%= player.score_distribution(@league)[2] %></td><td><%= player.score_distribution(@league)[1] %></td><td><%= player.bonus_points(@league) %></td>
 				<td><%= player.games_played(@league) %></td><td><%= player.games_played(@league) / 5 %></td>
@@ -48,5 +48,7 @@
 
 <br/><br/>
 
+<% if @admin %>
 <%= link_to 'Edit', edit_league_path(@league) %> |
 <%= link_to 'Back', leagues_path %>
+<% end %>

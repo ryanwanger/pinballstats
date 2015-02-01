@@ -10,9 +10,8 @@ class LeagueNightsController < ApplicationController
   # GET /league_nights/1
   # GET /league_nights/1.json
   def show
+    @admin = params[:admin]
     @player_scores = []
-    puts "THEASDALSDASD"
-    puts @league_night.inspect
     @league_night.league_games.each do |league_game|
       @player_scores << Score.where(league_game: league_game).order("score desc")
     end
