@@ -8,9 +8,9 @@ class LeagueGame < ActiveRecord::Base
 
 	def scores(group = nil)
 		if group
-			Score.where(league_game: game, group: group).order("score desc")
+			Score.where(league_game: league_game, group: group).order("score desc")
 		else
-			Score.where(league_game: game).order("score desc")
+			Score.where(league_game: league_game).order("score desc")
 		end
 	end
 end
