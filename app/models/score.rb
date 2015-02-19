@@ -14,8 +14,6 @@ class Score < ActiveRecord::Base
 		return points
 	end
 
-	private
-
 	def calculate_points
 		self.league_game.scores.where(group: self.group).each do |score|
 			score.update_column(:points, score.points_awarded)
