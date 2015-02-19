@@ -3,7 +3,7 @@ class Score < ActiveRecord::Base
 	belongs_to :league_game
 	belongs_to :group
 
-	after_save :calculate_points
+	# after_save :calculate_points
 
 	def points_awarded
 		group_scores = Score.where(league_game: league_game, group: group).order("score asc").collect(&:score)
