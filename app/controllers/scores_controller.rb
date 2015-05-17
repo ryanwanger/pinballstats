@@ -13,16 +13,29 @@ class ScoresController < ApplicationController
   end
 
   def next
-    Group.all.each do |group|
-      group.players.each do |player|
-        group.league_night.league_games.each do |league_game|
-          unless Score.where(player: player, group: group, league_game: league_game).exists?
-            redirect_to new_score_path(player_id: player.id, league_game_id: league_game.id, group_id: group.id)
-            return
-          end 
+    Matchup.all.each do |matchup|
+      matchup.teams.each do |team|
+        team.each do |player|
+          matchup.league_night.league_games.each do |league_game|
+            unless Score.where(player: player, league_game: league_game).exists?
+              redirect_to new_score_path(player_id: player.id, league_game_id: league_game.id)
+              return
+            end 
+          end
         end
       end
     end
+
+    # Group.all.each do |group|
+    #   group.players.each do |player|
+    #     group.league_night.league_games.each do |league_game|
+    #       unless Score.where(player: player, group: group, league_game: league_game).exists?
+    #         redirect_to new_score_path(player_id: player.id, league_game_id: league_game.id, group_id: group.id)
+    #         return
+    #       end 
+    #     end
+    #   end
+    # end
   end
 
   def standings
