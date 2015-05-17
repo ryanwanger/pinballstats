@@ -10,6 +10,9 @@ class PlayersController < ApplicationController
   # GET /players/1
   # GET /players/1.json
   def show
+    if session[:player_id]
+      # do fun stuff
+    end
   end
 
   # GET /players/new
@@ -19,6 +22,10 @@ class PlayersController < ApplicationController
 
   # GET /players/1/edit
   def edit
+  end
+
+  def login
+
   end
 
   # POST /players

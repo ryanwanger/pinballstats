@@ -10,5 +10,38 @@
   <%= @player.email %>
 </p>
 
+<% Game.first(10).each do |game| %>
+<div class="game-button"><img src="/assets<%=game.image_path %>"/></div>
+<% end %>
+
+<div class="left">
+<%= form_for :score do |f| %>
+<div class="field">
+    <%= f.number_field :score, class: "login-input", id: "score-input" %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+ <% end %>
+
+<%= link_to "Cancel", "#", id: "cancel" %>
+
+<br/><br/><br/>
+
 <%= link_to 'Edit', edit_player_path(@player) %> |
 <%= link_to 'Back', players_path %>
+</div>
+
+<script>
+$(function(){
+	$('#score-input').number( true, 2 );
+});
+
+$(".game-button").click(function() {
+	$(".game-button").not(this).hide();
+})
+
+$("#cancel").click(function() {
+	$(".game-button").show();
+})
+</script>

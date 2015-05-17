@@ -1,4 +1,10 @@
 PinballLeague::Application.routes.draw do
+  resources :team_players
+
+  resources :teams
+
+  resources :matchups
+
   root 'home#index'
 
   resources :group_players
@@ -26,6 +32,13 @@ PinballLeague::Application.routes.draw do
   resources :leagues
 
   resources :players
+
+  resources :score_keepers do
+    collection do
+      get 'fetch'
+      post 'login'
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

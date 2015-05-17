@@ -1,0 +1,27 @@
+<h1>Listing matchups</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>League night</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @matchups.each do |matchup| %>
+      <tr>
+        <td><%= matchup.league_night_id %></td>
+        <td><%= link_to 'Show', matchup %></td>
+        <td><%= link_to 'Edit', edit_matchup_path(matchup) %></td>
+        <td><%= link_to 'Destroy', matchup, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Matchup', new_matchup_path %>

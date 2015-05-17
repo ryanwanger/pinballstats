@@ -11,6 +11,17 @@ class LeaguesController < ApplicationController
   # GET /leagues/1.json
   def show
     @admin = params[:admin] ? true : false
+
+    @players = []
+    @win_loss = []
+    @league.players.each do |player|
+      @players << [player.nickname, sprintf('%.2f', Score.where(player_id: player).average(:outscored_percentage))]
+      total = Score.where(player_id: player).count
+      wins = Score.where(player_id: player).where(team_win: true).count
+      @win_loss << [player.nickname, wins, total-wins]
+    end
+    @players.sort!{|a,b| b[1] <=> a[1]}
+    @win_loss.sort!{|a,b| b[1] <=> a[1]}
   end
 
   # GET /leagues/new

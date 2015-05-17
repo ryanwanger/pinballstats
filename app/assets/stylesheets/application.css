@@ -41,6 +41,63 @@ table th {
 	background: white;
 }
 
+input[type=submit] {
+	border-radius: 5px;
+	padding: 10px;
+    border: 0;
+    width: 400px;
+    line-height: 36px;
+    font-size: 36px;
+    font-family: Tahoma;
+    background: #d7f2ba;
+}
+
+.login-input {
+	font-size: 36px;
+	width: 400px;
+	display: block;
+}
+
+.game-button {
+	width: 400px;
+	height: 300px;
+	float: left;
+}
+
+.game-button img {
+	width: 100%;
+	height: 100%;
+}
+
+.nav-button-container {
+	clear: bot
+	h;
+	margin-bottom: 30px;
+}
+
+.big-button {
+	padding: 0;
+	margin: 0;
+	border: 2px solid #7bb2a8;
+}
+
+.big-button a {
+	min-width: 320px;
+	max-width: 600px;
+	padding: 30px;
+	font-size: 48px;
+	display: block;
+	height: 100%;
+
+	text-decoration: none;
+	background-color: #d7f2ba;
+}
+
+.big-button a:hover {
+	background-color: #9cc69b;
+	color: #d7f2ba;
+}
+
 .left-border {
 	border-left: 5px solid white;
 }

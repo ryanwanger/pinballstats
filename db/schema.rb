@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150201064350) do
+ActiveRecord::Schema.define(version: 20150517212019) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20150201064350) do
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image_path"
   end
 
   create_table "group_players", force: true do |t|
@@ -68,6 +69,12 @@ ActiveRecord::Schema.define(version: 20150201064350) do
     t.datetime "updated_at"
   end
 
+  create_table "matchups", force: true do |t|
+    t.integer  "league_night_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "players", force: true do |t|
     t.string   "name"
     t.string   "email"
@@ -77,13 +84,29 @@ ActiveRecord::Schema.define(version: 20150201064350) do
   end
 
   create_table "scores", force: true do |t|
-    t.integer  "score",          limit: 8
+    t.integer  "score",                limit: 8
     t.integer  "player_id"
     t.integer  "league_game_id"
     t.integer  "group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "points"
+    t.integer  "outscored_percentage"
+    t.boolean  "team_win",                       default: false
+  end
+
+  create_table "team_players", force: true do |t|
+    t.integer  "team_id"
+    t.integer  "player_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "teams", force: true do |t|
+    t.integer  "league_night_id"
+    t.integer  "matchup_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

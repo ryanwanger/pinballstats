@@ -2,6 +2,25 @@
 
 <h1><%= @league.title %> current standings</h1>
 
+
+<% if @league.league_nights.first.groups.none? %>
+	<table class="league-table">
+	<tr><th>Name</th><th>Outscored %</th></tr>
+	<% @players.each do |player| %>
+		<tr><td class="text-left"><%= player[0] %></td><td><%= player[1]%></td></tr>
+	<% end %>
+	</table>
+
+
+	<table class="league-table">
+	<tr><th>Name</th><th>Wins</th><th>Losses</th></tr>
+	<% @win_loss.each do |player| %>
+		<tr><td class="text-left"><%= player[0] %></td><td><%= player[1]%></td><td><%= player[2] %></td></tr>
+	<% end %>
+	</table>
+<% end %>
+
+<% if @league.league_nights.first.groups.any? %>
 <%= form_for :league_night, url: create_groups_league_night_path(@league.league_nights.last), method: :post do |f| %>
 
 	<table class="league-table">
@@ -44,6 +63,7 @@
   	  </div>
   	<% end %>
 
+<% end %>
 <% end %>
 
 <br/><br/>

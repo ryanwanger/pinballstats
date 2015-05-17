@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>League night:</strong>
+  <%= @team.league_night_id %>
+</p>
+
+<p>
+  <strong>Matchup:</strong>
+  <%= @team.matchup_id %>
+</p>
+
+<%= link_to 'Edit', edit_team_path(@team) %> |
+<%= link_to 'Back', teams_path %>
