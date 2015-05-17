@@ -15,7 +15,7 @@ class ScoresController < ApplicationController
   def next
     Matchup.all.each do |matchup|
       matchup.teams.each do |team|
-        team.each do |player|
+        team.players.each do |player|
           matchup.league_night.league_games.each do |league_game|
             unless Score.where(player: player, league_game: league_game).exists?
               redirect_to new_score_path(player_id: player.id, league_game_id: league_game.id)
