@@ -11,6 +11,31 @@
 <% end %>
 <hr/>
 
+<div class="group-table-container">
+<% @league_night.matchups.each do |matchup| %>
+	<table class="group-table">
+		<th>Game</th>
+		<% matchup.teams.each do |team| %>
+			<th><%= team.players.collect(&:nickname).join(" & ") %></th>
+		<% end %>
+		<th>Diff</th>
+		<% LeagueGame.where(league_night_id: @league_night).each do |league_game| %>
+		
+			<tr>
+				<td><%= league_game.game.title %></td>
+				<% scores = [] %>
+				<% matchup.teams.each do |team| %>
+
+					<% scores << team.total_score(league_game).to_i %>
+					<td class="text-right"><%= scores.last.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></td>
+				<% end %>
+				<% scores.sort!{|a,b| b <=> a} %>
+				<td class="text-right"><%= ((scores[0].to_f/scores[1].to_f)*100 - 100).round(2) %>%</td>
+			</tr>
+		<% end %>
+	</table>
+<% end %>
+</div>
 
 <div class="league-nights game-score-table-container">
 	<% @league_night.league_games.each do |league_game| %>
