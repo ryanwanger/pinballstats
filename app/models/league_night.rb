@@ -3,6 +3,7 @@ class LeagueNight < ActiveRecord::Base
 	belongs_to :location
 	has_many :league_games
 	has_many :groups
+	has_many :matchups
 
 	after_create :set_week_number
 

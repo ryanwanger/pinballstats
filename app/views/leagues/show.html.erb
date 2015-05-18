@@ -3,7 +3,7 @@
 <h1><%= @league.title %> current standings</h1>
 
 
-<% if @league.league_nights.first.groups.none? %>
+<% if @league.uses_matchups? %>
 	<table class="league-table">
 	<tr><th>Name</th><th>Outscored %</th></tr>
 	<% @players.each do |player| %>
@@ -20,7 +20,7 @@
 	</table>
 <% end %>
 
-<% if @league.league_nights.first.groups.any? %>
+<% if @league.uses_groups? %>
 <%= form_for :league_night, url: create_groups_league_night_path(@league.league_nights.last), method: :post do |f| %>
 
 	<table class="league-table">
