@@ -4,6 +4,12 @@
 
 
 <% if @league.uses_matchups? %>
+	<div>
+		<% @league.league_nights.each do |league_night| %>
+	  <%= link_to "Week #{league_night.week_number} Results", league_night_path(league_night) %> |
+	<% end %>
+	</div>
+
 	<table class="league-table">
 	<tr><th>Name</th><th>Outscored %</th></tr>
 	<% @players.each do |player| %>
