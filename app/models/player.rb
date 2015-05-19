@@ -12,7 +12,8 @@ class Player < ActiveRecord::Base
 		when "Group"
 			Score.where(group: span, player: self)
 		when "League"
-			Score.where(player: self)
+
+			Score.where(player: self).where(league_game_id: LeagueGame.where(league_night_id: span.league_nights) )
 		end
 	end
 
