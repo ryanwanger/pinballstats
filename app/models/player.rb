@@ -1,7 +1,7 @@
 class Player < ActiveRecord::Base
 
-	def self.expected_points(league = League.last)
-		league.players.sort!{|a,b| b.expected_points <=> a.expected_points}
+	def self.expected_points(recent_weeks = 8, league = League.last)
+		league.players.sort!{|a,b| b.expected_points(recent_weeks) <=> a.expected_points(recent_weeks)}.each{|p| puts p.name; puts p.expected_points(recent_weeks); puts}
 	end
 
 	def expected_points(recent_weeks = 8)
