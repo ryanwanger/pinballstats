@@ -59,7 +59,7 @@ class ScoresController < ApplicationController
 
     respond_to do |format|
       if @score.save
-        format.html { redirect_to @score, notice: 'Score was successfully created.' }
+        format.html { redirect_to next_scores_path, notice: 'Score was successfully created.' }
         format.json { render action: 'show', status: :created, location: @score }
       else
         format.html { render action: 'new' }
