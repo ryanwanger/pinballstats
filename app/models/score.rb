@@ -30,6 +30,8 @@ class Score < ActiveRecord::Base
     elsif league.uses_groups?
       update_column(:points, points_awarded)
     end
+
+    update_column(:percent_of_average, score.to_f / league_game.scores.average(:score))
   end
 
   def team

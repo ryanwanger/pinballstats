@@ -1,5 +1,14 @@
 class Player < ActiveRecord::Base
 
+	def self.expected_points(league = League.last)
+		league.players.sort!{|a,b| b.expected_points <=> a.expected_points}
+	end
+
+	def expected_points(recent_weeks = 8)
+		scores = Score.where(player_id: id).order(:created_at).last(recent_weeks * 5).collect(&:percent_of_average)
+		(scores.inject{|sum,x| sum + x }.to_f / scores.count).round(2)
+	end
+
 	def scores(span = nil)
 		case span.class.name
 		when "LeagueNight"
