@@ -1,12 +1,16 @@
 class Player < ActiveRecord::Base
 
 	def self.expected_points(recent_weeks = 8, league = League.last)
-		league.players.sort!{|a,b| b.expected_points(recent_weeks) <=> a.expected_points(recent_weeks)}.each{|p| puts p.name; puts p.expected_points(recent_weeks); puts}
+		eps = []
+		league.players.each do |player|
+			eps << [player.nickname, player.expected_points(recent_weeks)]
+		end
+		eps.sort!{|a,b| b[1] <=> a[1]}
 	end
 
 	def expected_points(recent_weeks = 8)
 		scores = Score.where(player_id: id).order(:created_at).last(recent_weeks * 5).collect(&:percent_of_average)
-		(scores.inject{|sum,x| sum + x }.to_f / scores.count).round(2)
+		(scores.inject{|sum,x| sum + x }.to_f / scores.count * 100).round(0)
 	end
 
 	def scores(span = nil)
