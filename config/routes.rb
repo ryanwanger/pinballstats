@@ -14,6 +14,7 @@ PinballLeague::Application.routes.draw do
   resources :scores do
     collection do
       get 'next'
+      get 'calculate'
     end
   end
 

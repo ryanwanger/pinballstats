@@ -38,6 +38,11 @@ class ScoresController < ApplicationController
     # end
   end
 
+  def calculate
+    Score.where("created_at > ?", Time.now - 1.day).each{|s| s.calculate_points}
+    redirect_to root_path
+  end
+
   def standings
 
   end
