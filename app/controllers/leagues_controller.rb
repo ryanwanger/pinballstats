@@ -17,9 +17,9 @@ class LeaguesController < ApplicationController
       @win_loss = []
       @league.players.each do |player|
         @players << [player.nickname, sprintf('%.2f', Score.where(player_id: player).average(:outscored_percentage))]
-        total = Score.where(player_id: player).where(league_game_id: LeagueGame.where(league_night_id: @league.league_nights)).count
-        wins = Score.where(player_id: player).where(team_win: true).count
-        @win_loss << [player.nickname, wins, total-wins]
+        scores = Score.where(player_id: player).where(league_game_id: LeagueGame.where(league_night_id: @league.league_nights))
+        wins = scores.select{|s| s.team_win == true}.count
+        @win_loss << [player.nickname, wins, scores.count - wins]
       end
       @players.sort!{|a,b| b[1] <=> a[1]}
       @win_loss.sort!{|a,b| b[1] <=> a[1]}
