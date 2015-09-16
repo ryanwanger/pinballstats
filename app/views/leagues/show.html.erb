@@ -27,7 +27,7 @@
 
 	<table class="league-table">
 	<tr><th>Name</th><th>% of avg score</th></tr>
-	<% Player.expected_points(@league.league_nights.count).each do |player| %>
+	<% Player.expected_points(@league.league_nights.count, @league).each do |player| %>
 		<tr><td class="text-left"><%= player[0] %></td><td><%= player[1] %></td></tr>
 	<% end %>
 	</table>
