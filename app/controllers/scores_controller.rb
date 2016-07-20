@@ -53,7 +53,7 @@ class ScoresController < ApplicationController
 
   # GET /scores/new
   def new
-    # @group = Group.find(params[:group_id])
+    @group = Group.find(params[:group_id])
     @score = Score.new(player_id: params[:player_id], league_game_id: params[:league_game_id])
 
     # if params[:game_id] && session[:player_id]
