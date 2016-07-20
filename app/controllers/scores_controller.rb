@@ -13,29 +13,33 @@ class ScoresController < ApplicationController
   end
 
   def next
-    Matchup.all.each do |matchup|
-      matchup.teams.each do |team|
-        team.players.each do |player|
-          matchup.league_night.league_games.each do |league_game|
-            unless Score.where(player: player, league_game: league_game).exists?
-              redirect_to new_score_path(player_id: player.id, league_game_id: league_game.id)
-              return
-            end 
-          end
-        end
-      end
-    end
+    # When there are teammates
 
-    # Group.all.each do |group|
-    #   group.players.each do |player|
-    #     group.league_night.league_games.each do |league_game|
-    #       unless Score.where(player: player, group: group, league_game: league_game).exists?
-    #         redirect_to new_score_path(player_id: player.id, league_game_id: league_game.id, group_id: group.id)
-    #         return
-    #       end 
+    # Matchup.all.each do |matchup|
+    #   matchup.teams.each do |team|
+    #     team.players.each do |player|
+    #       matchup.league_night.league_games.each do |league_game|
+    #         unless Score.where(player: player, league_game: league_game).exists?
+    #           redirect_to new_score_path(player_id: player.id, league_game_id: league_game.id)
+    #           return
+    #         end 
+    #       end
     #     end
     #   end
     # end
+
+    # When there are no teammates
+
+    Group.all.each do |group|
+      group.players.each do |player|
+        group.league_night.league_games.each do |league_game|
+          unless Score.where(player: player, group: group, league_game: league_game).exists?
+            redirect_to new_score_path(player_id: player.id, league_game_id: league_game.id, group_id: group.id)
+            return
+          end 
+        end
+      end
+    end
   end
 
   def calculate
@@ -51,6 +55,16 @@ class ScoresController < ApplicationController
   def new
     # @group = Group.find(params[:group_id])
     @score = Score.new(player_id: params[:player_id], league_game_id: params[:league_game_id])
+
+    # if params[:game_id] && session[:player_id]
+    #   league_night = League.find(3).league_nights.first
+    #   @game = Game.find(params[:game_id])
+    #   league_game = LeagueGame.find_or_create_by(league_night: league_night, game_id: @game.id)
+    #   @score = Score.new(player_id: session[:player_id], league_game_id: league_game.id)
+    #   @hide_inputs = true
+    # else
+    #   @score = Score.new(player_id: params[:player_id], league_game_id: params[:league_game_id])
+    # end
   end
 
   # GET /scores/1/edit
