@@ -30,7 +30,7 @@
   </div>
 <div class="field">
     <%= f.label :group_id %><br>
-    <%= collection_select(:score, :group_id, @group || Group.all, :id, :dropdown_title) %>
+    <%= collection_select(:score, :group_id, Group.all, :id, :dropdown_title) %>
   </div>
   
 <% end %>
