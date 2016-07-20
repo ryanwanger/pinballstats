@@ -28,9 +28,9 @@
     <%= f.label :league_game_id %><br>
     <%= collection_select(:score, :league_game_id, @group.try(:league_night).try(:league_games) || LeagueGame.all, :id, :dropdown_title) %>
   </div>
-<!--   <div class="field">
+<div class="field">
     <%= f.label :group_id %><br>
     <%= collection_select(:score, :group_id, Group.all, :id, :dropdown_title) %>
-  </div> -->
+  </div>
   
 <% end %>
