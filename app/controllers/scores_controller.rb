@@ -30,7 +30,7 @@ class ScoresController < ApplicationController
 
     # When there are no teammates
 
-    Group.all.each do |group|
+    Group.last(6).each do |group|
       group.players.each do |player|
         group.league_night.league_games.each do |league_game|
           unless Score.where(player: player, group: group, league_game: league_game).exists?
