@@ -19,7 +19,7 @@ class LeagueNightsController < ApplicationController
 
   # GET /league_nights/new
   def new
-    @league_night = LeagueNight.new(league_id: params[:league_id])
+    @league_night = LeagueNight.new(league_id: params[:league_id] || League.last)
   end
 
   # GET /league_nights/1/edit

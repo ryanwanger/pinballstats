@@ -27,4 +27,8 @@ class League < ActiveRecord::Base
 	def uses_matchups?
 		league_nights.first.groups.none?
 	end
+
+	def long_title
+		"#{title}: Season #{start_date}"
+	end
 end
