@@ -33,7 +33,7 @@ class LeagueNightsController < ApplicationController
 
     respond_to do |format|
       if @league_night.save
-        format.html { redirect_to @league_night, notice: 'League night was successfully created.' }
+        format.html { redirect_to new_league_game_path, notice: 'League night was successfully created.' }
         format.json { render action: 'show', status: :created, location: @league_night }
       else
         format.html { render action: 'new' }
