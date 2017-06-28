@@ -16,6 +16,16 @@ class Group < ActiveRecord::Base
 			0.70
 		when 2
 			0.65
+		when 3
+			0.60
+		when 4
+			0.55
+		when 5
+			0.50
+		when 6
+			0.45
+		when 7
+			0.40
 		end
 	end
 
