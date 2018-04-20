@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :player_id %><br>
-    <%= collection_select(:group_player, :player_id, Player.all, :id, :name) %>
+    <%= collection_select(:group_player, :player_id, Player.order(:nickname), :id, :name) %>
   </div>
   <div class="actions">
     <%= f.submit %>
