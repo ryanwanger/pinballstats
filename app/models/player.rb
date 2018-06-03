@@ -48,7 +48,7 @@ class Player < ActiveRecord::Base
 	end
 
 	def average_score(league)
-		sprintf "%.2f", (points(league) / scores(league).count.to_f)
+		sprintf "%.3f", (points(league) / scores(league).count.to_f)
 	end
 
 	def games_played(league)
