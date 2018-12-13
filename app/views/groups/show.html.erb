@@ -2,7 +2,7 @@
 
 <p>
   <strong>League night:</strong>
-  <%= @group.league_night_id %>
+  <%= @group.league_night.dropdown_title %>
 </p>
 
 <p>
@@ -16,8 +16,9 @@
 	<% end %>
 </table>
 
+<ol>
 <% @group.league_games.each do |lg| %>
-	<h2><%= lg.game.title %></h2>
+	<li><%= lg.game.title %></li>
 	<table>
 		<% lg.scores(@group).each do |score| %>
 			<tr>
