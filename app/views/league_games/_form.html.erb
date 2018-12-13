@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :game_id %><br>
-    <%= collection_select(:league_game, :game_id, Game.order(:title), :id, :title) %>
+    <%= collection_select(:league_game, :game_id, Game.order(:title), :id, :title, prompt: true) %>
   </div>
   <div class="field">
     <%= f.label :league_night_id %><br>

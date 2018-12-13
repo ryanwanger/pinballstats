@@ -2,6 +2,13 @@
 
 <h2><%= @league_game.game.title %></h2>
 
+Games entered: 
+<ol>
+<% [0..4].each do |game_number| %>
+ <li><%= @league_game.league_night.try(:league_games[game_number]).try(:game).try(:title) %></li>
+ <% end %>
+ </ol>
+
 <table>
 <% @league_game.scores.each do |score| %>
 <tr><td><%= score.player.nickname %></td><td><%= score.score %></td></tr>
