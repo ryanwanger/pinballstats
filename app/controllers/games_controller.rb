@@ -28,7 +28,7 @@ class GamesController < ApplicationController
 
     respond_to do |format|
       if @game.save
-        format.html { redirect_to @game, notice: 'Game was successfully created.' }
+        format.html { redirect_to new_league_game, notice: 'Game was successfully created. Please select it from the drop down.' }
         format.json { render action: 'show', status: :created, location: @game }
       else
         format.html { render action: 'new' }
