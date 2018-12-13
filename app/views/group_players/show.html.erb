@@ -10,7 +10,18 @@
   <%= @group_player.player.nickname %>
 </p>
 
+<% if @group_player.group.group_players.count < 4 %>
+<%= link_to 'Add another player to group', new_group_player_path(group_id: @group_player.group_id) %>
+<% end %>
 
+<% if @group_player.group.group_players.count >= 3 %>
+<br/>
+<%= link_to 'Create another group', new_group_path %>
+<br/>
+<%= link_to 'All Groups are complete. Enter scores', next_scores_path %>
+<% end %>
+
+<br/><br/>
 <%= link_to 'Edit', edit_group_player_path(@group_player) %> |
-<%= link_to 'Back', group_players_path %> |
-<%= link_to 'Add player to group', new_group_player_path(group_id: @group_player.group_id) %> | <%= link_to 'Create another group', new_group_path %>
+<%= link_to 'Back', group_players_path %>
+
