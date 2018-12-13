@@ -14,3 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).on 'click', 'tr[data-link]', (evt) -> 
+    window.location = this.dataset.link

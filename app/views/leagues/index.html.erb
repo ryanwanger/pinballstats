@@ -1,29 +1,19 @@
-<h1>Listing leagues</h1>
+<h1>Choose your league</h1>
 
 <table>
   <thead>
     <tr>
+      <th>League</th>
       <th>Start date</th>
-      <th>Title</th>
-      <th></th>
-      <th></th>
-      <th></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @leagues.each do |league| %>
-      <tr>
-        <td><%= league.start_date %></td>
+    <% @leagues.order("id desc").each do |league| %>
+      <tr data-link="<% league_path(league)%>">
         <td><%= league.title %></td>
-        <td><%= link_to 'Show', league %></td>
-        <td><%= link_to 'Edit', edit_league_path(league) %></td>
-        <td><%= link_to 'Destroy', league, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= league.start_date %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New League', new_league_path %>
