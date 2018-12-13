@@ -1,9 +1,7 @@
-<h1>Choose your league</h1>
-
 <table>
   <thead>
     <tr>
-      <th>League</th>
+      <th>Your league</th>
       <th>Start date</th>
     </tr>
   </thead>
@@ -12,7 +10,7 @@
     <% @leagues.order("id desc").each do |league| %>
       <tr data-link="<%= league_path(league)%>">
         <td><%= league.title %></td>
-        <td><%= league.start_date %></td>
+        <td><%= league.start_date.strftime("%B %-d, %Y") %></td>
       </tr>
     <% end %>
   </tbody>
