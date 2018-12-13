@@ -20,6 +20,7 @@ Games entered:
 <% else %>
   <%= link_to 'Add another game', new_league_game_path %>
 <% end %>
-| 
-<%= link_to 'Edit', edit_league_game_path(@league_game) %> |
+
+<br/><br/> 
+<%= link_to 'Edit Game', edit_league_game_path(@league_game) %> |
 <%= link_to 'Back', league_games_path %>
