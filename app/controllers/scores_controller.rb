@@ -34,7 +34,7 @@ class ScoresController < ApplicationController
       group.league_night.league_games.each_with_index do |league_game, gi|
         player_count = group.players.count
 
-        (0..player_count-1) do |player_number|
+        (0..player_count-1).each do |player_number|
           player_index = (player_count - gi + player_number) % player_count
           player = group.players[player_index]
           unless Score.where(player: player, group: group, league_game: league_game).exists?
