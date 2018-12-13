@@ -3,31 +3,31 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .game-score-table {
-	margin-left: 5px;
-	float: left;
+    float: left;
+    margin-left: 5px;
 }
-
+ 
 .game-score-table-container {
-	width: 100%;
-	margin-bottom: 20px;
-	float: left;
+    float: left;
+    margin-bottom: 20px;
+    width: 100%;
 }
 
 .group-table {
-	display: inline-block;
-	min-height: 150px;
-	float: left;
+    display: inline-block;
+    float: left;
+    min-height: 150px;
 }
-
+ 
 .group-table-container {
-	max-width: 620px;
-	display: block;
-	float: left;
+    display: block;
+    float: left;
+    max-width: 620px;
 }
 
 .graph-container {
-	width: 100%;
-	float: left;
+    float: left;
+    width: 100%;
 }
 
 .league-nights {
@@ -40,24 +40,48 @@
 		padding-right: 10px;
 	}
 
+	table tr:nth-child(even) {
+    	background: #f8f8f8;
+	}
+
+	table tr:nth-child(odd) {
+    	background: #e8ebf2;
+	}
+
 	.selected {
 		color: white;
-		background-color: #676f54 !important;
+		background-color: #395161;
 	}
+}
 
-	.score-4 {
-		background-color: #d7f2ba;
-	}
-
-	.score-3 {
-		background-color: #bde4a8;
-	}
-
-	.score-2 {
-		background-color: #9cc69b;
-	}
-
-	.score-1 {
-		background-color: #7bb2a8;
-	}
+.league-nights td:first-of-type.score-1:before {
+    color: #da002e;
+    content: '4th';
+    display: inline-block;
+    font-size: 8px;
+    margin-right: 7px;
+}
+ 
+.league-nights td:first-of-type.score-2:before {
+    color: #ff6d02;
+    content: '3rd';
+    display: inline-block;
+    font-size: 8px;
+    margin-right: 7px;
+}
+ 
+.league-nights td:first-of-type.score-3:before {
+    color: #1099e8;
+    content: '2nd';
+    display: inline-block;
+    font-size: 8px;
+    margin-right: 7px;
+}
+ 
+.league-nights td:first-of-type.score-4:before {
+    color: #2e9612;
+    content: '1st';
+    display: inline-block;
+    font-size: 8px;
+    margin-right: 7px;
 }
