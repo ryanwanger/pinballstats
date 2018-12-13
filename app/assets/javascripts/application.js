@@ -15,5 +15,6 @@
 //= require turbolinks
 //= require_tree .
 
-$(document).on 'click', 'tr[data-link]', (evt) -> 
-    window.location = this.dataset.link
+$("tr[data-link]").click(function() {
+  window.location = $(this).data("link")
+});
