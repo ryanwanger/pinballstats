@@ -9,7 +9,11 @@
   <strong>Group:</strong>
   <%= @group_player.group.dropdown_title %>
 
-
+  <ol>
+  <% @group_player.group.group_players.each do |gp| %>
+  	<li><%= gp.player.name %></li>
+  <% end %>
+  </ol>
 </p>
 
 
