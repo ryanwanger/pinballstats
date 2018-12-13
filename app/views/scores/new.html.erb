@@ -9,7 +9,7 @@
 <table>
 <% previous_score.group.group_players.each_with_index do |gp, gpi| %>
 	<% gp_score = Score.where(player_id: gp.player_id, group_id: previous_score.group_id, league_game_id: previous_score.league_game_id ).first %>
-	<tr><td><%= gpi+1 %></td><td><%= gp.player.name %></td><td><%= number_with_delimiter(gp_score.try(:score), delimiter: ",") %></td><td><%= link_to "Edit", edit_score_path %></td></tr>
+	<tr><td><%= gpi+1 %></td><td><%= gp.player.name %></td><td><%= number_with_delimiter(gp_score.try(:score), delimiter: ",") %></td><td><%= link_to "Edit", edit_score_path(gp_score) if gp_score %></td></tr>
 <% end %>
 </table>
 
