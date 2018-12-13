@@ -4,8 +4,8 @@
 
 Games entered: 
 <ol>
-<% [0..4].each do |game_number| %>
- <li><%= @league_game.league_night.try(:league_games[game_number]).try(:game).try(:title) %></li>
+<% (0..4).each do |game_number| %>
+ <li><%= @league_game.league_night.league_games[game_number].try(:game).try(:title) %></li>
  <% end %>
  </ol>
 
