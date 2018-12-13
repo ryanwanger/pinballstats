@@ -3,14 +3,15 @@
 <%= render 'form' %>
 
 
-<h3>Previously entered<h3>
+<h3>Previously entered</h3>
 <% previous_score = Score.last %>
-<%= previous_score.league_game.game.title %>
+<% previous_lg = previous_score.league_game %>
+<%= previous_lg.game.title %>
 <table>
-<% previous_score.group.group_players.each_with_index do |gp, gpi| %>
+<% Score.where(league_game_id: previous_lg.id, group_id: previous_score.group_id).each_with_index do |gp, gpi| %>
 	<% gp_score = Score.where(player_id: gp.player_id, group_id: previous_score.group_id, league_game_id: previous_score.league_game_id ).first %>
 	<tr><td><%= gpi+1 %></td><td><%= gp.player.name %></td><td><%= number_with_delimiter(gp_score.try(:score), delimiter: ",") %></td><td><%= link_to "Edit", edit_score_path(gp_score) if gp_score %></td></tr>
 <% end %>
 </table>
-
+<br/><br/>
 <%= link_to 'Back', scores_path %>
