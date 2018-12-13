@@ -34,7 +34,7 @@
 <% end %>
 
 <% if @league.uses_groups? %>
-<%= form_for :league_night, url: create_groups_league_night_path(@league.league_nights.last), method: :post do |f| %>
+<div class="league-div">
 
 	<table class="league-table">
 
@@ -70,13 +70,8 @@
 			</tr>
 		<% end %>
 	</table>
-	<% if @admin %>
-	  <div class="actions">
-	    <%= f.submit "Generate groups" %>
-  	  </div>
-  	<% end %>
 
-<% end %>
+</div>
 <% end %>
 
 <br/><br/>

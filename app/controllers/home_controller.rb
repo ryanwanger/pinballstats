@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-  	redirect_to league_path(League.last)
+  	redirect_to leagues_path
   end
 end
