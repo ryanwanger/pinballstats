@@ -1,14 +1,22 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Group:</strong>
-  <%= @group_player.group.dropdown_title %>
-</p>
-
-<p>
   <strong>Player:</strong>
   <%= @group_player.player.nickname %>
 </p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @group_player.group.dropdown_title %>
+
+  <ol>
+  <% @group_player.group.group_players.each do |player| %>
+  	<li><%= player.name %></li>
+  <% end %>
+  </ol>
+</p>
+
+
 
 <% if @group_player.group.group_players.count < 4 %>
 <%= link_to 'Add another player to group', new_group_player_path(group_id: @group_player.group_id) %>
