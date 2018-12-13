@@ -30,9 +30,13 @@ class ScoresController < ApplicationController
 
     # When there are no teammates
 
-    Group.last(6).each do |group|
-      group.players.each do |player|
-        group.league_night.league_games.each do |league_game|
+    Group.where("created_at > ?", Time.current - 1.day).each do |group|
+      group.league_night.league_games.each_with_index do |league_game, gi|
+        player_count = group.players.count
+
+        (0..player_count-1) do |player_number|
+          player_index = (player_count - gi + player_number) % player_count
+          player = group.players[player_index]
           unless Score.where(player: player, group: group, league_game: league_game).exists?
             redirect_to new_score_path(player_id: player.id, league_game_id: league_game.id, group_id: group.id)
             return
