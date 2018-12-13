@@ -1,6 +1,6 @@
 class Group < ActiveRecord::Base
 	belongs_to :league_night
-	has_many :group_players
+	has_many :group_players, order: "id asc"
 	has_many :players, through: :group_players
 	has_many :league_games, through: :league_night
 
