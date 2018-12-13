@@ -36,7 +36,7 @@ class ScoresController < ApplicationController
 
         (0..player_count-1).each do |player_number|
           player_index = (player_count - gi + player_number) % player_count
-          player = group.players[player_index]
+          player = group.group_players[player_index].player
           unless Score.where(player: player, group: group, league_game: league_game).exists?
             redirect_to new_score_path(player_id: player.id, league_game_id: league_game.id, group_id: group.id)
             return
