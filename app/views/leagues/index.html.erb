@@ -10,7 +10,7 @@
 
   <tbody>
     <% @leagues.order("id desc").each do |league| %>
-      <tr data-link="<% league_path(league)%>">
+      <tr data-link="<%= league_path(league)%>">
         <td><%= league.title %></td>
         <td><%= league.start_date %></td>
       </tr>
