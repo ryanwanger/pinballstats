@@ -30,6 +30,9 @@
 	</table>
 <% end %>
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %> |
 <%= link_to 'Add player to group', new_group_player_path(group_id: @group.id) %>
+<br/><br/>
+
+<%= link_to 'Edit', edit_group_path(@group) %> |
+<%= link_to 'Back', groups_path %>
+

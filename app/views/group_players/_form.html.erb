@@ -13,11 +13,11 @@
 
   <div class="field">
     <%= f.label :group_id %><br>
-    <%= collection_select(:group_player, :group_id, Group.all, :id, :dropdown_title) %>
+    <%= collection_select(:group_player, :group_id, Group.order("id desc"), :id, :dropdown_title) %>
   </div>
   <div class="field">
     <%= f.label :player_id %><br>
-    <%= collection_select(:group_player, :player_id, Player.order(:nickname), :id, :name) %>
+    <%= collection_select(:group_player, :player_id, Player.order(:nickname), :id, :name, prompt: true) %>
   </div>
   <div class="actions">
     <%= f.submit %>
