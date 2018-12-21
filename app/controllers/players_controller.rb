@@ -35,7 +35,7 @@ class PlayersController < ApplicationController
 
     respond_to do |format|
       if @player.save
-        format.html { redirect_to @player, notice: 'Player was successfully created.' }
+        format.html { redirect_to new_group_player_url, notice: 'Player was successfully created and is now in the dropdown.' }
         format.json { render action: 'show', status: :created, location: @player }
       else
         format.html { render action: 'new' }

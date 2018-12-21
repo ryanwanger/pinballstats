@@ -8,10 +8,23 @@
 
   <tbody>
     <% @leagues.order("id desc").each do |league| %>
-      <tr data-link="<%= league_path(league)%>">
+      <tr data-link="<%= league_path(league)%>" style="cursor: pointer">
         <td><%= league.title %></td>
         <td><%= league.start_date.strftime("%B %-d, %Y") %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+265
+7
+1x
+1x
+??
+3x
+1x
+1.5x
+2x
+
+11.5
+265/11
