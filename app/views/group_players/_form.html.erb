@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :player_id %><br>
-    <%= collection_select(:group_player, :player_id, Player.order(:nickname), :id, :name, prompt: true) %> or <%= link_to "Add new player", new_player_path %>
+    <%= collection_select(:group_player, :player_id, Player.order(:name), :id, :name, prompt: true) %> or <%= link_to "Add new player", new_player_path %>
   </div>
   <div class="actions">
     <%= f.submit %>
