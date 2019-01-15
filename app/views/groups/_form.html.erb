@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :league_night_id %><br>
-    <%= collection_select(:group, :league_night_id, LeagueNight.all.order("date desc"), :id, :dropdown_title) %>
+    <%= collection_select(:group, :league_night_id, LeagueNight.all.order("created_at desc"), :id, :dropdown_title) %>
   </div>
   <div class="field">
     <%= f.label :group_rank %><br>
