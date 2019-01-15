@@ -13,11 +13,11 @@
 
   <div class="field">
     <%= f.label :game_id %><br>
-    <%= collection_select(:league_game, :game_id, Game.order(:title), :id, :title, prompt: true) %>
+    <%= collection_select(:league_game, :game_id, Game.order(:title), :id, :title, prompt: true) %> or <%= link_to "Add new game", new_game_path %>
   </div>
   <div class="field">
     <%= f.label :league_night_id %><br>
-    <%= collection_select(:league_game, :league_night_id, LeagueNight.all.order("date desc"), :id, :dropdown_title) %> or <%= link_to "Add new game", new_game_path %>
+    <%= collection_select(:league_game, :league_night_id, LeagueNight.all.order("created_at desc"), :id, :dropdown_title) %>
   </div>
 
   <div class="actions">

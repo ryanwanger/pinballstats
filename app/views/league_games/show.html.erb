@@ -15,11 +15,15 @@ Games entered:
 <% end %>
 </table>
 
-<% if @league_game.league_night.league_games.count == 5 %>
-  <%= link_to 'Create groups', new_group_path %>
-<% else %>
+<% if @league_game.league_night.league_games.count < 5 %>
   <%= link_to 'Add another game', new_league_game_path %>
+  <br/>
 <% end %>
+
+<% if @league_game.league_night.league_games.count >= 4 %>
+  <%= link_to 'I\'m done. Create groups', new_group_path %>
+<% end %>
+
 
 <br/><br/> 
 <%= link_to 'Edit Game', edit_league_game_path(@league_game) %> |

@@ -2,9 +2,8 @@
 
 <%= render 'form' %>
 
-
+<% if previous_score = Score.last %>
 <h3>Previously entered</h3>
-<% previous_score = Score.last %>
 <% previous_lg = previous_score.league_game %>
 <%= previous_lg.game.title %>
 <table>
@@ -14,4 +13,5 @@
 <% end %>
 </table>
 <br/><br/>
+<% end %>
 <%= link_to 'Back', scores_path %>
