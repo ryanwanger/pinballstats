@@ -51,7 +51,7 @@
 			<tr><td class="text-left"><%= player.nickname %></td><td><%= player.average_score(@league) %></td><td><%= player.points(@league) %></td>
 
 				<td><%= player.score_distribution(@league)[4] %></td><td><%= player.score_distribution(@league)[3] %></td><td><%= player.score_distribution(@league)[2] %></td><td><%= player.score_distribution(@league)[1] %></td><td><%= player.bonus_points(@league) %></td>
-				<td><%= player.games_played(@league) %></td><td><%= player.games_played(@league) / 5 %></td>
+				<td><%= player.games_played(@league) %></td><td><%= player.games_played(@league) / @league.league_nights.first.try(:league_games).try(:count) %></td>
 				<% @league.league_nights.each do |league_night| %>
 					<% if @admin == false || league_night != @league.league_nights.last %>
 						<td><%= player.points(league_night) %></td>
