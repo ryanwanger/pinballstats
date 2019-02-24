@@ -30,7 +30,7 @@ class ScoresController < ApplicationController
 
     # When there are no teammates
 
-    Group.where("created_at > ?", Time.current - 1.day).each do |group|
+    Group.where("created_at > ?", Time.current - 7.days).each do |group|
       group.league_night.league_games.each_with_index do |league_game, gi|
         player_count = group.players.count
 
